@@ -1,0 +1,172 @@
+Import pandas as pd
+
+import matplotlib.pyplot as pit
+
+import seaborn as ans
+
+from sklearn.linear model Laport SGDClassifier
+
+from sklearn.preprocessing import StandardScaler from sklearn.metrics import classification_report, confusion matrix, accuracy_score
+
+msklearn.model selection impors train_test_split
+
+from datetime Laport datetime
+
+def generate data(n_samples-500, anomaly_ratio-0.21:
+
+healthynp.random.normal(loc-0.0, scale-1.0, size (int in samples (1 anomaly ratio)), 100)) np.random.normal (loc 3.0, scale-1.5, size=((n_samples anomaly ratio), 100))
+
+damaged data np.vstack([healthy, damaged])
+
+labels np.array([0] healthy.shape[0] [1] damaged.shape[0])
+
+return data, labels
+
+def extract features (data):
+
+feature list
+
+for algnal in data:
+
+features
+
+man: np.mean(signal), stdup.std(signal), op.sqrt (np.mean (signal++2)), "kurtosia: pd.Series(signal).kurt(), skewness pd.Series (signal) skew()
+
+feature list.append(features)
+
+return pd.DataFrame (feature list)
+
+def simulate streaming data in events-5):
+
+return [np.random.normal(loc-np.random.choice (10.0, 3.0], -[0.6, 0.21), scale-1.2, size-100) For in (nevents)]
+
+infint (signal, threshold-2.5):
+
+return np.sqrt (np.mean(signal**2)) threshold
+
+X raw, y generate data()
+
+X features extract_features(X_raw)
+
+X_train, X test, y train, y test train_test_split (X_features, y, test aize-0.3, random state=42)
+
+scaler StandardScaler()
+
+X train scaled scaler.fit transform(X train)
+
+X test scaled scaler.transform(X_test)
+
+Cif SGDClassifier (loss=log loss, random state-42)
+
+cif.partial fit (X train scaled, y train, classes-np.unique (y))
+
+y pred clf.predict (X test scaled)
+
+initial report classification_report (y_test, y pred, output dict=True) conf matrix confusion matrix(y test, y pred)
+
+accuracy accuracy scorely test, y pred)
+
+event data simulate streaming datain events-10) event data simulate streaming data (n eventa-10)
+
+event outputs()
+
+correct 0 total o
+
+accuracy trend]
+
+Coci, signal in(event_data): rmanp.sqrt(op.mean (signal *2))
+
+it is event faignall:
+
+features extract featurest signal)
+
+features scaled scaler.transform(features)
+
+predictioncif.predict (features scaled) (0)
+
+true label-1 np.mean (signal) 1.5 0
+
+totalt
+
+if prediction correct I true label:
+
+running accuracy correct total
+
+accuracy trend.append("event id': 1+1, running accuracy's running accuracy))
+
+event outputs.append({ event id':
+
+mound(rme. 2). predicted' DAMAGED LE prediction eise 'HEALTHY. actual DAMAGED LE true label else 'HEALTHY
+
+17
+elf.partial_fit{features_scaled, Itrue_label])
+
+event outputs.append(( 'event id'ri 1,
+
+med(rms, 2). 'predicted': 'NO ACTION
+
+actual': N/A
+
+event df pd. DataFrame (event_outputs)
+
+2
+
+9.00 KB/S
+
+Vo LTED
+
+ון ייון
+
+15%
+
+historical rma pd.DataFrame ((event id: range(1, Inn (X test) + 1), m: X test['rma'].values, 'event type': "Historical",
+
+"true label': y test, *predicted Label: y prod))
+
+realtime df event drevent df [predicted'] != 'NO ACTION.copy()
+
+realtime df['true label'] realtime df(actual).map((HEALTHY: 0, "DAMAGED: 13) realtime dfi'predicted Label'] realtime df['predicted"].map((HEALTHY': 0, DAMAGED: 11) realtime df['event_type] Real-time
+
+comparison df pd.concat (1
+
+historical_rms['event id', 'ima', 'event type', true label 11, realtime df[['event id', 'rms', 'event type', 'tros label'll
+
+1. Ignore index-True)
+
+pit.figure(figaize-(12, 6))
+
+sna.acatterplot (data-comparison df, xetevent id, yms', hue-event type', style true label, m-100)
+
+pit.axhline (2.5, color='red', linestyle, label TMS Threshold')
+
+pit.title("RMS Comparisons Historical va Real-Time Events")
+
+pit.xlabel("Event 10) pit.ylabel("RMT Value")
+
+plt.grid(True)
+
+pit.tight layout()
+
+plt.show()
+
+accuracy df pd. DataFrame (accuracy_trend)
+
+pit.figure(tignize (10,5))
+
+sns.lineplut (data-accuracy df, x-'event Id', y-running accuracy", marker-a) plt.ylim(0, 1.05)
+
+plt.title("Jomning Accuracy Over Heal-Time Events")
+
+pit.xlabel("Event 10") plt.ylabel("Accuracy")
+
+pit.grid(True)
+
+pit.tight layout()
+
+pit.show()
+
+prant ("AnEvent Prediction Table:\n", \n", event df)
+
+print("\ninitial Model Report:\n", classification_report (y test, y_pred)) print("\nConfusion Matriarn", conf matrix)
+
+print("\nAccuracy Bcores", accuracy)
