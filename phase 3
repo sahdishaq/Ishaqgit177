@@ -1,0 +1,96 @@
+import numpy as np
+
+import pandas al pd
+
+from sklearn.ensemble Import Random ForestClassifier from sklearn.metrics Import classification report
+
+from sklearn.model selection import train teat_split
+
+def generate data (n samples-500, anomaly ratio=0.2):
+
+healthy np.random.normal(loc-0.0, scale-1.0, size (int(n samples damaged np.random.normal(loc-3.0, scale-1.5, size (Lut(n samples (1 anomaly ratio)), 100)) anomaly ratio), 100))
+
+data np.vstack([healthy, damaged])
+
+Labels = np.array(10) healthy.shape[0] [1] damaged.shape[0])
+
+return data, labels
+
+def extract feature(data):
+
+feature list = []
+
+for siqnal in data:
+
+features
+
+mean: np.mean (signal), std: np.std(signal), m: np.sqrt (np.mean (signal *2)), 'kortosis: pd.series(signal).kurt(), okewness: pd.Series(signal) skew()
+
+feature list.append(features)
+
+return pd.DataFrame (feature listi
+
+def simulate streaming dat (n eventa-5):
+
+retors [np.random.normal(loc-np.random.choice(10.0, 3.0), p-10.8, 0.2)), scale 1.2, size-100)
+
+return np.sqrt(np.mean(signal**2))> threshold
+
+X raw, y generate data ()
+
+X features extract features (X raw)
+
+x train, X test, y train, y test train_test_split (X_features, y, test size=0.3, random_state=42) cif Random ForestClassifier(n estimators-100, random state-42) cif.fit(X train, y train)
+
+y pred clf.predict(X test)
+
+initial report classification report (y test, y pred, output dict-True)
+
+event data simulate streaming data()
+
+event outputs = []
+
+for i, signal in merate (event data):
+
+if is event (signal):
+
+features extract_features((signal])
+
+predictioncif.predict (features) (0) true label 1 if np.meantsignal) > 1.5 else 0
+
+Otors the petitiolw
+
+event outputs.append({
+
+event id': 1+1,
+
+m: np.sqrt(np.sean (signal**2)), 'predicted': 'DAMAGED' it prediction else 'HEALTHY', actual': "DAMAGED If true label else 'HEALTHY
+
+11
+event_outputs.append(1
+
+'event id':iol
+
+ma: np.sqrt(np.mean(signal**2)),
+
+'predicted': DAMAGED prediction cipe "HEALTHY,
+
+Factual: DAMAGED if true label else "HEALTHY
+
+elf.fit (pd.concat([X_train, features]), np.append(y_train, true_label}) X train pd.concat([X train, features))
+
+y train sp.append(y train, true labell
+
+eiset
+
+event_outputs.append(1
+
+11
+
+'event id': 1+1,
+
+np.sqrt(np.mean(signal**2)), "predicted': 'NO ACTION,
+
+'actual': N/A
+
+pd.DataFrame (event outputs), initial report
